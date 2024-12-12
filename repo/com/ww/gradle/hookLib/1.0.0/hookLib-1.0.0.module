@@ -1,0 +1,117 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.ww.gradle",
+    "module": "hookLib",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "hookLib-1.0.0.aar",
+          "url": "hookLib-1.0.0.aar",
+          "size": 119287,
+          "sha512": "6d3a658f1413d560ed0936650c44fd3c31882ceaa37bae99c7b348566fa82712dcb7d0d1c740d831c72b702a2efddf267ad9c26a017e6cdab27534eaa9027398",
+          "sha256": "bce09462899358cb597527939fa2363936f3583bdd89843e68a0b75f22c3b9a9",
+          "sha1": "e3c0023b70e5161a28e2e91394842d44beabce65",
+          "md5": "3dab1774a24e50d775bb64f20dbef964"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.13.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.7.0"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.11.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "hookLib-1.0.0.aar",
+          "url": "hookLib-1.0.0.aar",
+          "size": 119287,
+          "sha512": "6d3a658f1413d560ed0936650c44fd3c31882ceaa37bae99c7b348566fa82712dcb7d0d1c740d831c72b702a2efddf267ad9c26a017e6cdab27534eaa9027398",
+          "sha256": "bce09462899358cb597527939fa2363936f3583bdd89843e68a0b75f22c3b9a9",
+          "sha1": "e3c0023b70e5161a28e2e91394842d44beabce65",
+          "md5": "3dab1774a24e50d775bb64f20dbef964"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "hookLib-1.0.0-sources.jar",
+          "url": "hookLib-1.0.0-sources.jar",
+          "size": 71127,
+          "sha512": "108c4e74deaaca99209dbf1dba196cf0cb9c479078e10b3afe3c456b2a101b44329d1cfb21f0e9d5ad1323a35bc091c7a33cbf47d4a6b4145d32471032d870c9",
+          "sha256": "fc8fa8527d3e3a969b3de0539752c8b28bc4ed5d27f03c64982cd8a1ff6ab38f",
+          "sha1": "2ef455ceb296ab0d39f8c8c0ad8fa649450a39df",
+          "md5": "b2fa54b7556f81a247f988565272ede5"
+        }
+      ]
+    }
+  ]
+}

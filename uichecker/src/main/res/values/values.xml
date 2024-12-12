@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray_e0e0e0">#ffe0e0e0</color>
+    <color name="gray_f0f0f0">#ffe0e0e0</color>
+    <item name="border_view" type="id"/>
+    <integer name="dialog_anim_duartion">300</integer>
+    <string name="app_name">UIChecker</string>
+    <style name="BaseDialog" parent="android:Animation">
+
+    </style>
+    <style name="BottomDialog" parent="BaseDialog">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_bottom_exit</item>
+    </style>
+    <style name="CenterDialog" parent="BaseDialog">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_center_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_center_exit</item>
+    </style>
+    <style name="FullHeightDialog" parent="Theme.AppCompat.DayNight.Dialog">
+<!--        &lt;!&ndash;边框&ndash;&gt;-->
+<!--        <item name="android:windowFrame">@null</item>-->
+<!--        &lt;!&ndash;是否浮现在activity之上&ndash;&gt;-->
+<!--        <item name="android:windowIsFloating">true</item>-->
+<!--        &lt;!&ndash;半透明&ndash;&gt;-->
+<!--        <item name="android:windowIsTranslucent">false</item>-->
+<!--        <item name="android:windowFullscreen">false</item>-->
+<!--        &lt;!&ndash;无标题&ndash;&gt;-->
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        &lt;!&ndash;提示框背景（透明）&ndash;&gt;-->
+<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+<!--        &lt;!&ndash;模糊&ndash;&gt;-->
+<!--        <item name="android:backgroundDimEnabled">true</item>-->
+    </style>
+    <style name="LeftDialog" parent="BaseDialog">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_left_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_left_exit</item>
+    </style>
+    <style name="RightDialog" parent="BaseDialog">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_right_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_right_exit</item>
+    </style>
+    <style name="TopDialog" parent="BaseDialog">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_top_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_top_exit</item>
+    </style>
+</resources>
