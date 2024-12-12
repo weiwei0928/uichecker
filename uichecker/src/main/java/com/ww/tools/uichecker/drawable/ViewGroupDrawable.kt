@@ -78,8 +78,7 @@ class ViewGroupDrawable(private val rootView: ViewGroup) : Drawable() {
     }
 
     private fun calcRelativePosition(currViewItem: ViewItem, refViewItem: ViewItem) {
-
-        /
+        /**
         val rect1 = Rect(
             currViewItem.globalLocation.left,
             currViewItem.globalLocation.top,
@@ -101,7 +100,39 @@ class ViewGroupDrawable(private val rootView: ViewGroup) : Drawable() {
 
         println("Child 2 is at ($relativeLeft, $relativeTop) relative to Child 1.")
         println("Child 2's bottom-right corner is at ($relativeRight, $relativeBottom) relative to Child 1's bottom-right.")
+        */
 
+        val isRight: Boolean = refViewItem.location.left >= currViewItem.location.right
+        val isLeft: Boolean = refViewItem.location.right <= currViewItem.location.left
+        val isTop: Boolean = refViewItem.location.bottom <= currViewItem.location.top
+        val isBottom: Boolean = refViewItem.location.top >= currViewItem.location.bottom
+        if (isRight && !isTop && !isBottom) {
+            val rightViewItem: ViewItem? = currViewItem.rightViewItem
+            if (rightViewItem == null || refViewItem.location.left < rightViewItem.location.left) {
+                currViewItem.rightViewItem = refViewItem
+                refViewItem.leftViewItem = currViewItem
+            }
+            if (refViewItem.leftViewItem != null) {
+                val i: Int = currViewItem.location.right
+                val leftViewItem: ViewItem? = refViewItem.leftViewItem
+            }
+            refViewItem.leftViewItem = currViewItem
+        }
+        if (isBottom && !isLeft && !isRight) {
+            val bottomViewItem: ViewItem? = currViewItem.bottomViewItem
+            if (bottomViewItem == null || refViewItem.location.top < bottomViewItem.location.top) {
+                currViewItem.bottomViewItem = refViewItem
+                refViewItem.topViewItem = currViewItem
+            }
+            if (refViewItem.topViewItem != null) {
+                val i2: Int = currViewItem.location.bottom
+                val topViewItem: ViewItem? = refViewItem.topViewItem
+                if (i2 >= topViewItem?.location?.top!!) {
+                    return
+                }
+            }
+            refViewItem.topViewItem = currViewItem
+        }
 
 
     }
