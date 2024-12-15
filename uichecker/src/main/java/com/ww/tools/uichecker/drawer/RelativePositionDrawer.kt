@@ -2,27 +2,21 @@ package com.ww.tools.uichecker.drawer
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import com.ww.tools.uichecker.drawer.base.ViewGroupDrawer
 import com.ww.tools.uichecker.model.ViewItem
-import kotlin.jvm.internal.Intrinsics
 import kotlin.math.abs
 
 class RelativePositionDrawer(context: Context) : ViewGroupDrawer(context) {
     private val sDebugLines = FloatArray(12)
 
     override fun onDraw(canvas: Canvas, list: List<ViewItem?>) {
-        Intrinsics.checkNotNullParameter(canvas, "canvas")
-        Intrinsics.checkNotNullParameter(list, "viewItems")
         for (viewItem in list) {
             if (viewItem!!.visibility == 0) {
                 val leftViewItem = viewItem.leftViewItem
                 if (leftViewItem != null) {
-                    if (leftViewItem.rightViewItem == null || (!Intrinsics.areEqual(
-                            viewItem,
-                            leftViewItem.rightViewItem
-                        ))
-                    ) {
+                    if (leftViewItem.rightViewItem == null || viewItem != leftViewItem.rightViewItem) {
                         val fromX = viewItem.location.left
                         val fromY = viewItem.location.top + (viewItem.location.height() / 2)
                         val toX = leftViewItem.location.right
@@ -39,11 +33,7 @@ class RelativePositionDrawer(context: Context) : ViewGroupDrawer(context) {
                 }
                 val topViewItem = viewItem.topViewItem
                 if (topViewItem != null) {
-                    if (topViewItem.bottomViewItem == null || (!Intrinsics.areEqual(
-                            viewItem,
-                            topViewItem.bottomViewItem
-                        ))
-                    ) {
+                    if (topViewItem.bottomViewItem == null || viewItem != topViewItem.bottomViewItem) {
                         val fromX3 = viewItem.location.left + (viewItem.location.width() / 2)
                         val fromY3 = viewItem.location.top
                         val toY = topViewItem.location.bottom
@@ -102,7 +92,7 @@ class RelativePositionDrawer(context: Context) : ViewGroupDrawer(context) {
         }
         val dpText = dpValue.toString()
         mPaint.textSize = getTextSize(dpText, distance.toFloat())
-        mPaint.color = -65536
+        mPaint.color = Color.GREEN
         mPaint.strokeWidth = 1.0f
         val lineLabelLength = dipsToPixels(3)
         if (fromY == toY) {

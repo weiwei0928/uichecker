@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Switch xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launch_switch"
+    android:layout_width="45dp"
+    android:layout_height="45dp"
+    android:layout_margin="5dp"
+    android:padding="5dp"
+    android:elevation="10dp"
+    android:layout_gravity="right|top"
+    android:background="@drawable/lancher_logo_bg"
+    tools:ignore="UseSwitchCompatOrMaterialXml" />

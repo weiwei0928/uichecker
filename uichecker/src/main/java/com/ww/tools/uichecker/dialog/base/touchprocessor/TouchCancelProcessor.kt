@@ -1,32 +1,29 @@
-package com.ww.tools.uichecker.dialog.base.touchprocessor;
+package com.ww.tools.uichecker.dialog.base.touchprocessor
 
-import android.view.MotionEvent;
+import android.view.MotionEvent
+import com.ww.tools.uichecker.dialog.base.YOYODialog
+import kotlin.math.abs
 
-import com.ww.tools.uichecker.dialog.base.YOYODialog;
+class TouchCancelProcessor : TouchProcessor() {
+    private var lastMotionEvent: MotionEvent? = null
+    private var hasContentTouched = false
+    private var moveDistance = 0.0f
 
-public class TouchCancelProcessor extends TouchProcessor {
-    private MotionEvent lastMotionEvent;
-    private boolean hasContentTouched = false;
-    private float moveDistance = 0.0f;
+    override fun doProcess(dialog: YOYODialog, event: MotionEvent) {
+        when (event.action) {
+            0 -> {
+                this.hasContentTouched =
+                    dialog.contentRect.contains(event.x.toInt(), event.y.toInt())
+                this.lastMotionEvent = MotionEvent.obtain(event)
+                this.moveDistance = 0.0f
+            }
 
-    @Override
-    public void doProcess(YOYODialog dialog, MotionEvent event) {
-        switch (event.getAction()) {
-            case 0:
-                this.hasContentTouched = dialog.getContentRect().contains((int) event.getX(), (int) event.getY());
-                this.lastMotionEvent = MotionEvent.obtain(event);
-                this.moveDistance = 0.0f;
-                break;
-            case 1:
-                if (!this.hasContentTouched) {
-                    dialog.dismiss();
-                    break;
-                }
-                break;
-            case 2:
-                this.moveDistance += Math.abs(event.getX() - this.lastMotionEvent.getX()) + Math.abs(event.getY() - this.lastMotionEvent.getY());
-                break;
+            1 -> if (!this.hasContentTouched) {
+                dialog.dismiss()
+            }
+
+            2 -> moveDistance += abs(event.x - lastMotionEvent!!.x) + abs(event.y - lastMotionEvent!!.y)
         }
-        this.lastMotionEvent = MotionEvent.obtain(event);
+        this.lastMotionEvent = MotionEvent.obtain(event)
     }
 }

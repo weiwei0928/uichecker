@@ -47,8 +47,8 @@ android {
 publishing {
     publications {
         register<MavenPublication>("mavenRelease") {
-            groupId = "com.ww.gradle"
-            artifactId = "hookLib"
+            groupId = "com.ww.tools"
+            artifactId = "uichecker"
             version = "1.0.0"
             afterEvaluate {
                 from(components["release"])

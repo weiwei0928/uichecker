@@ -4,11 +4,11 @@ import android.app.Application
 import android.content.SharedPreferences
 
 object RunningSettings {
-    private const val name: String = "RunningSettings"
+    private const val NAME: String = "RunningSettings"
     private var sharedPreferences: SharedPreferences? = null
     private const val KEY_SHOW_LAYOUT_BORDER = "show_layout_border"
     fun init(application: Application) {
-        sharedPreferences = application.getSharedPreferences(name, 0)
+        sharedPreferences = application.getSharedPreferences(NAME, 0)
     }
 
     fun set(key: String, value: String) {

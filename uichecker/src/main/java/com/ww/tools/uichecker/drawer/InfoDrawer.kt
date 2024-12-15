@@ -2,11 +2,11 @@ package com.ww.tools.uichecker.drawer
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import com.ww.tools.uichecker.drawer.base.ViewGroupDrawer
 import com.ww.tools.uichecker.model.ViewItem
-import kotlin.jvm.internal.Intrinsics
 import kotlin.math.abs
 
 class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
@@ -18,15 +18,9 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
         CENTER
     }
 
-    init {
-        Intrinsics.checkNotNullParameter(context, "context")
-    }
-
     override fun onDraw(canvas: Canvas, list: List<ViewItem?>) {
-        Intrinsics.checkNotNullParameter(canvas, "canvas")
-        Intrinsics.checkNotNullParameter(list, "viewItems")
         for (viewItem in list) {
-            if (viewItem!!.visibility == 0) {
+            if (viewItem?.visibility == 0) {
                 val x1 = viewItem.location.left
                 val y1 = viewItem.location.top
                 val x2 = viewItem.location.right
@@ -63,7 +57,7 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
         val y2 = location.bottom
         mPaint.textSize = 12.0f
         mPaint.style = Paint.Style.FILL
-        mPaint.color = -65536
+        mPaint.color = Color.RED
         val fontMetrics = mPaint.fontMetrics
         val fontHeight = fontMetrics.bottom - fontMetrics.top
         val baseline = (fontHeight / 2) - fontMetrics.bottom

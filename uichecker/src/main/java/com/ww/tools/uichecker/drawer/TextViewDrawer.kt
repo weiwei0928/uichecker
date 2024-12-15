@@ -2,6 +2,7 @@ package com.ww.tools.uichecker.drawer
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.widget.TextView
@@ -40,7 +41,7 @@ class TextViewDrawer(context: Context) : IDrawer(context) {
         }
         mPaint.textSize = 8.0f
         mPaint.style = Paint.Style.FILL
-        mPaint.color = -65536
+        mPaint.color = Color.RED
         mPaint.textAlign = Paint.Align.LEFT
         val textSize = pixelsToScaleDips(view.textSize)
         val textColors = view.textColors
@@ -57,7 +58,7 @@ class TextViewDrawer(context: Context) : IDrawer(context) {
         )
         val centerY = ((bounds.bottom - verticalOffset) / 2) + verticalOffset
         val centerX = bounds.left + (bounds.width() / 2)
-        mPaint.color = -65536
+        mPaint.color = Color.GREEN
         drawDistance(canvas, mPaint, 0, centerY, bounds.left, centerY)
         drawDistance(canvas, mPaint, centerX, 0, centerX, verticalOffset)
         drawDistance(canvas, mPaint, bounds.right, centerY, view.measuredWidth, centerY)

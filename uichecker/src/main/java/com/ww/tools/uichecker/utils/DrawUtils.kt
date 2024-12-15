@@ -24,7 +24,7 @@ object DrawUtils {
         val dpText = dpValue.toString()
         paint.style = Paint.Style.FILL
         paint.textSize = getTextSize(dpText, distance.toFloat())
-        paint.color = -65536
+        paint.color = Color.GREEN
         paint.strokeWidth = 1.0f
         val lineLabelLength = dipsToPixels(3)
         if (fromY == toY) {
