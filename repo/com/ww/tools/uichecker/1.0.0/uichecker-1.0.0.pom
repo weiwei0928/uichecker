@@ -36,5 +36,11 @@
       <version>1.11.0</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>androidx.lifecycle</groupId>
+      <artifactId>lifecycle-process</artifactId>
+      <version>2.8.7</version>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
 </project>
