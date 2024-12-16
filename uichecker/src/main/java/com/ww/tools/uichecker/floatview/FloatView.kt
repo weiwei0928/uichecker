@@ -3,53 +3,82 @@ package com.ww.tools.uichecker.floatview
 import android.animation.Animator
 import android.animation.Animator.AnimatorListener
 import android.animation.ValueAnimator
-import android.content.Context
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.LinearInterpolator
+import android.widget.CompoundButton
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Switch
 import com.example.myapplication.floatview.FloatViewEvent
 import com.ww.tools.uichecker.R
+import com.ww.tools.uichecker.utils.FloatUtils
+import com.ww.tools.uichecker.utils.SpUtil
+import com.ww.tools.uichecker.widget.BorderViewFrameLayout
 
 class FloatView(
-    var context: Context,
-    var windowManagerHelper: WindowManagerHelper
+    private var activity: Activity,
+    private var windowManagerHelper: WindowManagerHelper
 ) : FloatViewEvent {
 
     private var floatRootView: ViewGroup? = null // 悬浮窗View
     private var isShowOriginalView = true
     private lateinit var layoutOriginal: LinearLayout
     private lateinit var layoutAdsorbed: LinearLayout
+    private var switch: Switch? = null
+    private var imageView: ImageView? = null
     private var layoutOriginalWidth = 0
     private var layoutAdsorbedWidth = 0
     private var layoutWidthOffset = 0
     private var screenWidth = 0
+    private var isChecked = false
+
 
     companion object {
         private const val TAG = "FloatView.Log"
     }
 
     init {
-//        floatRootView =
-//            LayoutInflater.from(context).inflate(R.layout.light_float_item, null) as ViewGroup?
-//        floatRootView?.apply {
-//            layoutOriginal = findViewById(R.id.float_content)
-//            layoutAdsorbed = findViewById(R.id.float_small)
-//            layoutOriginalWidth = layoutOriginal.layoutParams.width
-//            layoutAdsorbedWidth = layoutAdsorbed.layoutParams.width
-//            layoutWidthOffset = Math.abs(layoutOriginalWidth - layoutAdsorbedWidth)
+        floatRootView =
+            LayoutInflater.from(activity).inflate(R.layout.light_float_item, null) as ViewGroup?
+        floatRootView?.apply {
+            layoutOriginal = findViewById(R.id.float_content)
+            layoutAdsorbed = findViewById(R.id.float_small)
+            switch = findViewById(R.id.float_switch)
+            imageView = findViewById(R.id.float_back_icon)
+
+            layoutOriginalWidth = layoutOriginal.layoutParams.width
+            layoutAdsorbedWidth = layoutAdsorbed.layoutParams.width
+            layoutWidthOffset = Math.abs(layoutOriginalWidth - layoutAdsorbedWidth)
 //            visibility = View.GONE
-//            // 动态设置吸附view的高度
-//            viewTreeObserver.addOnPreDrawListener {
-//                layoutAdsorbed.layoutParams.height = height
-//                true
-//            }
-//            setOnTouchListener(FloatViewTouchListener(this@FloatView))
-//        }
-        val displayMetrics = context.resources.displayMetrics
+            // 动态设置吸附view的高度
+            viewTreeObserver.addOnPreDrawListener {
+                layoutAdsorbed.layoutParams.height = height
+                true
+            }
+            setOnTouchListener(FloatViewTouchListener(this@FloatView))
+        }
+        val displayMetrics = activity.resources.displayMetrics
         screenWidth = displayMetrics.widthPixels
+
+        switch?.isChecked = SpUtil.isShowLayoutBorder()
+        switch?.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+
+            SpUtil.setShowLayoutBorder(isChecked)
+            if (isChecked) {
+                if (!BorderViewFrameLayout.isInstalled(activity)) {
+                    BorderViewFrameLayout.install(activity)
+                    return@OnCheckedChangeListener
+                }
+                return@OnCheckedChangeListener
+            }
+            BorderViewFrameLayout.uninstalled(activity)
+        })
+
+
 //        Log.e(
 //            "floatView",
 //            "screenWidth:${screenWidth},layoutOne:${layoutOriginalWidth},layoutTwo:${layoutAdsorbedWidth}"
@@ -67,6 +96,16 @@ class FloatView(
 
     fun show() {
         floatRootView?.visibility = View.VISIBLE
+    }
+
+    fun onStart() {
+        imageView?.visibility = View.GONE
+        switch?.visibility = View.VISIBLE
+    }
+
+    fun onStop() {
+        switch?.visibility = View.GONE
+        imageView?.visibility = View.VISIBLE
     }
 
     private fun showOriginalView1() {
@@ -185,14 +224,23 @@ class FloatView(
     }
 
     override fun onClick() {
-//        Log.e(TAG,">>>>>>>>>点击了>>>>>>>>>>")
         if (isShowOriginalView) {
             // 唤醒activity
 //            context.startActivity(Intent(context, MainActivity2::class.java))
             val launchIntentForPackage =
-                context.packageManager.getLaunchIntentForPackage(context.packageName)
-            context.startActivity(launchIntentForPackage)
-
+                activity.packageManager.getLaunchIntentForPackage(activity.packageName)
+            activity.startActivity(launchIntentForPackage)
+//            isChecked = !isChecked
+//            RunningSettings.setShowLayoutBorder(isChecked)
+//            if (isChecked) {
+//                if (!BorderViewFrameLayout.isInstalled(activity)) {
+//                    BorderViewFrameLayout.install(activity)
+//                    return
+//                }
+//                return
+//            }
+//
+//            BorderViewFrameLayout.uninstalled(activity)
         } else {
             resetTranslateX()
             showOriginalView1()

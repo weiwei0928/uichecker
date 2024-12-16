@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.WindowManager
+import com.ww.tools.uichecker.utils.FloatUtils
 
 class WindowManagerHelper(var context: Context) {
 

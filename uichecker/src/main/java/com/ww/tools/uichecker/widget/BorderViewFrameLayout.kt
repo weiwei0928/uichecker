@@ -12,7 +12,7 @@ import android.widget.FrameLayout
 import com.ww.tools.uichecker.R
 import com.ww.tools.uichecker.drawable.ViewDrawable
 import com.ww.tools.uichecker.drawable.ViewGroupDrawable
-import com.ww.tools.uichecker.utils.RunningSettings
+import com.ww.tools.uichecker.utils.SpUtil
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -136,7 +136,7 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
     }
 
     fun updateChildrenForeground() {
-        if (RunningSettings.isShowLayoutBorder()) {
+        if (SpUtil.isShowLayoutBorder()) {
             replaceChildrenForeground(this)
         } else {
             clearChildrenForeground(this)

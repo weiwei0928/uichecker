@@ -12,7 +12,7 @@ import com.ww.tools.uichecker.utils.DrawUtils.drawDistance
 
 class TextViewDrawer(context: Context) : IDrawer(context) {
 
-     fun onDraw(canvas: Canvas, view: TextView) {
+    fun onDraw(canvas: Canvas, view: TextView) {
         val layout = view.layout
         val bounds = Rect()
         val verticalOffset = view.baseline - layout.getLineBaseline(0)
@@ -45,8 +45,13 @@ class TextViewDrawer(context: Context) : IDrawer(context) {
         mPaint.textAlign = Paint.Align.LEFT
         val textSize = pixelsToScaleDips(view.textSize)
         val textColors = view.textColors
+        val id = try {
+            " " + context.resources.getResourceEntryName(view.id)
+        } catch (e: Exception) {
+            ""
+        }
         val textColor = toHexString(textColors.defaultColor)
-        val text = "text(" + textSize + "sp, " + textColor + ')'
+        val text = "text(" + textSize + "sp, " + textColor + id + ")"
         mPaint.textAlign = Paint.Align.RIGHT
         canvas.drawText(
             text,
@@ -59,10 +64,10 @@ class TextViewDrawer(context: Context) : IDrawer(context) {
         val centerY = ((bounds.bottom - verticalOffset) / 2) + verticalOffset
         val centerX = bounds.left + (bounds.width() / 2)
         mPaint.color = Color.GREEN
-        drawDistance(canvas, mPaint, 0, centerY, bounds.left, centerY)
-        drawDistance(canvas, mPaint, centerX, 0, centerX, verticalOffset)
-        drawDistance(canvas, mPaint, bounds.right, centerY, view.measuredWidth, centerY)
-        drawDistance(canvas, mPaint, centerX, bounds.bottom, centerX, view.measuredHeight)
+        drawDistance(context,canvas, mPaint, 0, centerY, bounds.left, centerY)
+        drawDistance(context,canvas, mPaint, centerX, 0, centerX, verticalOffset)
+        drawDistance(context,canvas, mPaint, bounds.right, centerY, view.measuredWidth, centerY)
+        drawDistance(context,canvas, mPaint, centerX, bounds.bottom, centerX, view.measuredHeight)
     }
 
 }

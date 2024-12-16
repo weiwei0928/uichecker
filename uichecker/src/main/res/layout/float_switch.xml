@@ -8,5 +8,4 @@
     android:padding="5dp"
     android:elevation="10dp"
     android:layout_gravity="right|top"
-    android:background="@drawable/lancher_logo_bg"
     tools:ignore="UseSwitchCompatOrMaterialXml" />

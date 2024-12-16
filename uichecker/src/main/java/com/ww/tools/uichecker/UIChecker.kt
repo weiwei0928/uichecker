@@ -5,8 +5,8 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
-import com.ww.tools.uichecker.utils.RunningSettings.init
-import com.ww.tools.uichecker.widget.LauncherView.Companion.install
+import com.ww.tools.uichecker.floatview.FloatViewHelper
+import com.ww.tools.uichecker.utils.SpUtil.init
 
 object UIChecker {
 
@@ -14,7 +14,8 @@ object UIChecker {
         init(application)
         application.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-                install(activity)
+//                LauncherView.install(activity)
+                FloatViewHelper.init(activity)
             }
 
             override fun onActivityStarted(activity: Activity) = Unit

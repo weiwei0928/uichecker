@@ -11,7 +11,6 @@ import com.ww.tools.uichecker.UIChecker
 class AppWatcherInstaller : ContentProvider() {
     override fun onCreate(): Boolean {
         val context = context ?: return false
-        ApplicationUtils.context = context.applicationContext
         val application = context.applicationContext as Application
         UIChecker.manualInstall(application)
         return true

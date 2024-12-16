@@ -3,8 +3,8 @@ package com.ww.tools.uichecker.drawable
 import android.graphics.Canvas
 import android.graphics.ColorFilter
 import android.graphics.PixelFormat
-import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.view.ViewGroup
 import com.ww.tools.uichecker.drawer.InfoDrawer
 import com.ww.tools.uichecker.drawer.OutLineDrawer
@@ -55,7 +55,7 @@ class ViewGroupDrawable(private val rootView: ViewGroup) : Drawable() {
         val childCount = rootView.childCount
         for (i in 0 until childCount) {
             val childView = rootView.getChildAt(i)
-            if (childView.visibility == 0) {
+            if (childView.visibility == View.VISIBLE) {
                 val childViewItem: ViewItem = ViewItemFactory.generateViewItem(childView)
                 childViewItem.parentViewItem = parentViewItem
                 childViewItems.add(childViewItem)

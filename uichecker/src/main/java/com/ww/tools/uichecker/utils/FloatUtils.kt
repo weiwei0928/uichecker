@@ -1,4 +1,4 @@
-package com.ww.tools.uichecker.floatview
+package com.ww.tools.uichecker.utils
 
 import android.app.Activity
 import android.app.ActivityManager
@@ -10,7 +10,6 @@ import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
-import java.util.*
 
 object FloatUtils {
     const val REQUEST_FLOAT_CODE = 1001

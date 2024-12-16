@@ -27,9 +27,15 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
                 val y2 = viewItem.location.bottom
                 val width = abs((x1 - x2).toDouble()).toInt()
                 val height = abs((y1 - y2).toDouble()).toInt()
-                val size = StringBuilder().append(pixelsToDips(width)).append('x')
+                val size = StringBuilder().append(pixelsToDips(width)).append("*")
                     .append(pixelsToDips(height)).toString()
-                drawViewInfo(size, Direction.LEFT_TOP, canvas, viewItem.location, viewItem)
+                val id = try {
+                    " " + context.resources.getResourceEntryName(viewItem.id)
+                } catch (e: Exception) {
+                    ""
+                }
+                val info = "$size id:$id"
+                drawViewInfo(info, Direction.LEFT_TOP, canvas, viewItem.location, viewItem)
                 val backgroundColor = viewItem.backgroundColor
                 if (backgroundColor != null) {
                     drawViewInfo(

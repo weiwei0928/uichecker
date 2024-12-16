@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
+import com.ww.tools.uichecker.drawer.InfoDrawer.Direction
 import com.ww.tools.uichecker.drawer.base.ViewGroupDrawer
 import com.ww.tools.uichecker.model.ViewItem
 import com.ww.tools.uichecker.utils.DrawUtils
@@ -35,6 +37,7 @@ class OutLineDrawer(context: Context) : ViewGroupDrawer(context) {
                 dipsToPixels(8)
                 dipsToPixels(1)
                 DrawUtils.drawRectCorners(
+                    context,
                     canvas,
                     paint,
                     viewItem.location.left,
@@ -43,6 +46,110 @@ class OutLineDrawer(context: Context) : ViewGroupDrawer(context) {
                     viewItem.location.bottom
                 )
             }
+        }
+    }
+
+    private fun drawViewInfo(
+        info: String,
+        direction: Direction,
+        canvas: Canvas,
+        location: Rect,
+        viewItem: ViewItem?
+    ) {
+        val x1 = location.left
+        val y1 = location.top
+        val x2 = location.right
+        val y2 = location.bottom
+        mPaint.textSize = 12.0f
+        mPaint.style = Paint.Style.FILL
+        mPaint.color = Color.RED
+        val fontMetrics = mPaint.fontMetrics
+        val fontHeight = fontMetrics.bottom - fontMetrics.top
+        val baseline = (fontHeight / 2) - fontMetrics.bottom
+        when (direction) {
+            Direction.LEFT_TOP -> {
+                if (!viewItem!!.hasChildView) {
+                    mPaint.textAlign = Paint.Align.LEFT
+                    canvas.drawText(
+                        info,
+                        0,
+                        info.length,
+                        (x1 + 1).toFloat(),
+                        (y1 - fontMetrics.top) + 1,
+                        mPaint
+                    )
+                    return
+                }
+                return
+            }
+
+            Direction.RIGHT_TOP -> {
+                if (!viewItem!!.hasChildView) {
+                    mPaint.textAlign = Paint.Align.RIGHT
+                    canvas.drawText(
+                        info,
+                        0,
+                        info.length,
+                        (x2 - 1).toFloat(),
+                        (y1 - fontMetrics.top) + 1,
+                        mPaint
+                    )
+                    return
+                }
+                return
+            }
+
+            Direction.LEFT_BOTTOM -> {
+                if (!viewItem!!.hasChildView) {
+                    mPaint.textAlign = Paint.Align.LEFT
+                    canvas.drawText(
+                        info,
+                        0,
+                        info.length,
+                        (x1 + 1).toFloat(),
+                        (y2 - 1).toFloat(),
+                        mPaint
+                    )
+                    return
+                }
+                return
+            }
+
+            Direction.RIGHT_BOTTOM -> {
+                if (!viewItem!!.hasChildView) {
+                    mPaint.textAlign = Paint.Align.RIGHT
+                    canvas.drawText(
+                        info,
+                        0,
+                        info.length,
+                        (x2 - 2).toFloat(),
+                        (y2 - 2).toFloat(),
+                        mPaint
+                    )
+                    return
+                }
+                return
+            }
+
+            Direction.CENTER -> {
+                val centerX = (x1 + x2) / 2
+                val centerY = (y1 + y2) / 2
+                if (!viewItem!!.hasChildView) {
+                    mPaint.textAlign = Paint.Align.CENTER
+                    canvas.drawText(
+                        info,
+                        0,
+                        info.length,
+                        centerX.toFloat(),
+                        centerY + baseline,
+                        mPaint
+                    )
+                    return
+                }
+                return
+            }
+
+            else -> return
         }
     }
 

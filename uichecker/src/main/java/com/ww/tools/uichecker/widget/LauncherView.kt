@@ -6,17 +6,12 @@ import android.graphics.Color
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.Switch
-import androidx.appcompat.widget.SwitchCompat
 import androidx.customview.widget.ViewDragHelper
 import com.ww.tools.uichecker.R
-import com.ww.tools.uichecker.dialog.base.YOYODialog
-import com.ww.tools.uichecker.dialog.views.DeveloperOptionsDialog
-import com.ww.tools.uichecker.utils.RunningSettings
-import com.ww.tools.uichecker.utils.RunningSettings.isShowLayoutBorder
+import com.ww.tools.uichecker.utils.SpUtil
+import com.ww.tools.uichecker.utils.SpUtil.isShowLayoutBorder
 import kotlin.math.max
 import kotlin.math.min
 
@@ -58,40 +53,21 @@ class LauncherView(private var activity: Activity) : FrameLayout(activity) {
             }
         })
 
-//        switch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-//
-//            RunningSettings.setShowLayoutBorder(isChecked)
-//            if (isChecked) {
-//                if (!BorderViewFrameLayout.isInstalled(activity)) {
-//                    BorderViewFrameLayout.install(activity)
-//                    return@OnCheckedChangeListener
-//                }
-//                return@OnCheckedChangeListener
-//            }
-//            BorderViewFrameLayout.uninstalled(activity)
-//        })
 
         logoView.setOnClickListener {
-            YOYODialog.Builder(context)
-                .setContentView(DeveloperOptionsDialog(activity))
-                .setCancelable(true)
-                .setNavigationBarColor(Color.GREEN)
-                .setDialogStyle(YOYODialog.DialogStyle.BOTTOM)
-                .setOutsideTouchable(false)
-                .setSlidingDismiss(true)
-                .build()
-                .show()
-//            isChecked = !isChecked
-//            RunningSettings.setShowLayoutBorder(isChecked)
-//            if (isChecked) {
-//                if (!BorderViewFrameLayout.isInstalled(activity)) {
-//                    BorderViewFrameLayout.install(activity)
-//                    return@setOnClickListener
-//                }
-//                return@setOnClickListener
-//            }
-//
-//            BorderViewFrameLayout.uninstalled(activity)
+            isChecked = !isChecked
+            SpUtil.setShowLayoutBorder(isChecked)
+            if (isChecked) {
+                if (!BorderViewFrameLayout.isInstalled(activity)) {
+                    BorderViewFrameLayout.install(activity)
+                    return@setOnClickListener
+                }
+                return@setOnClickListener
+            }
+
+            BorderViewFrameLayout.uninstalled(activity)
+
+
         }
     }
 

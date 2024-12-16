@@ -3,7 +3,7 @@ package com.ww.tools.uichecker.utils
 import android.app.Application
 import android.content.SharedPreferences
 
-object RunningSettings {
+object SpUtil {
     private const val NAME: String = "RunningSettings"
     private var sharedPreferences: SharedPreferences? = null
     private const val KEY_SHOW_LAYOUT_BORDER = "show_layout_border"

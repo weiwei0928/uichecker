@@ -1,5 +1,6 @@
 package com.ww.tools.uichecker.utils
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
@@ -13,20 +14,20 @@ object DrawUtils {
     val DEBUG_CORNERS_COLOR: Int = Color.rgb(63, 127, 255)
     private val sDebugLines = FloatArray(12)
     private val s8Points = FloatArray(16)
-    fun drawDistance(canvas: Canvas, paint: Paint, fromX: Int, fromY: Int, toX: Int, toY: Int) {
+    fun drawDistance(context: Context,canvas: Canvas, paint: Paint, fromX: Int, fromY: Int, toX: Int, toY: Int) {
         val distance =
             if (fromY == toY) abs((toX - fromX).toDouble()).toInt() else abs((toY - fromY).toDouble())
                 .toInt()
-        val dpValue = pixelsToDips(distance)
+        val dpValue = pixelsToDips(context,distance)
         if (dpValue <= 0 || dpValue > 150) {
             return
         }
         val dpText = dpValue.toString()
         paint.style = Paint.Style.FILL
-        paint.textSize = getTextSize(dpText, distance.toFloat())
+        paint.textSize = getTextSize(context,dpText, distance.toFloat())
         paint.color = Color.GREEN
         paint.strokeWidth = 1.0f
-        val lineLabelLength = dipsToPixels(3)
+        val lineLabelLength = dipsToPixels(context,3)
         if (fromY == toY) {
             sDebugLines[0] = fromX.toFloat()
             sDebugLines[1] = fromY.toFloat()
@@ -68,10 +69,10 @@ object DrawUtils {
         }
     }
 
-    fun drawRectCorners(canvas: Canvas, paint: Paint, x1: Int, y1: Int, x2: Int, y2: Int) {
+    fun drawRectCorners(context: Context,canvas: Canvas, paint: Paint, x1: Int, y1: Int, x2: Int, y2: Int) {
         paint.style = Paint.Style.FILL
-        val lineLength = dipsToPixels(DEBUG_CORNERS_SIZE_DIP)
-        val lineWidth = dipsToPixels(1)
+        val lineLength = dipsToPixels(context,DEBUG_CORNERS_SIZE_DIP)
+        val lineWidth = dipsToPixels(context,1)
         drawCorner(canvas, paint, x1, y1, lineLength, lineLength, lineWidth)
         drawCorner(canvas, paint, x1, y2, lineLength, -lineLength, lineWidth)
         drawCorner(canvas, paint, x2, y1, -lineLength, lineLength, lineWidth)
@@ -121,20 +122,20 @@ object DrawUtils {
         }
     }
 
-    private fun dipsToPixels(dips: Int): Int {
-        val resources: Resources = ApplicationUtils.context.resources
+    private fun dipsToPixels(context: Context,dips: Int): Int {
+        val resources: Resources = context.resources
         val scale = resources.displayMetrics.density
         return ((dips * scale) + 0.5f).toInt()
     }
 
-    private fun pixelsToDips(pixels: Int): Int {
-        val resources: Resources = ApplicationUtils.context.resources
+    private fun pixelsToDips(context: Context, pixels: Int): Int {
+        val resources: Resources = context.resources
         val scale = resources.displayMetrics.density
         return (pixels / scale).toInt()
     }
 
-    fun pixelsToScaleDips(pixels: Float): Int {
-        val resources: Resources = ApplicationUtils.context.resources
+    fun pixelsToScaleDips(context: Context,pixels: Float): Int {
+        val resources: Resources = context.resources
         val scale = resources.displayMetrics.scaledDensity
         return (pixels / scale).toInt()
     }
@@ -143,9 +144,9 @@ object DrawUtils {
         return if (x >= 0) 1 else -1
     }
 
-    private fun getTextSize(text: String, distance: Float): Float {
+    private fun getTextSize(context:Context,text: String, distance: Float): Float {
         val charWidth = (distance / text.length).toInt()
-        return charWidth.coerceIn(dipsToPixels(5), dipsToPixels(10)).toFloat()
+        return charWidth.coerceIn(dipsToPixels(context,5), dipsToPixels(context,10)).toFloat()
     }
 
     fun toHexString(value: Int): String {
