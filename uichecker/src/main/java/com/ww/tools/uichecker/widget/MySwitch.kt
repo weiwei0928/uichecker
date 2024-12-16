@@ -1,6 +1,5 @@
 package com.ww.tools.uichecker.widget
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -12,7 +11,6 @@ import android.widget.Switch
  */
 
 
-@SuppressLint("UseSwitchCompatOrMaterialCode")
 class MySwitch @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : Switch(context, attrs, defStyleAttr) {

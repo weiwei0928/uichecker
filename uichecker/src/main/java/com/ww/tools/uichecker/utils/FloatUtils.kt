@@ -61,6 +61,12 @@ object FloatUtils {
             Log.e("checkWindowPermission", "已授权悬浮窗")
             block()
         } else {
+
+//             val startForResult = context.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//                if (result.resultCode == Activity.RESULT_OK) {
+//                    val data: Intent? = result.data
+//                }
+//            }
             try {
                 Log.e("checkWindowPermission", "未授权悬浮窗,去往设置页")
                 Toast.makeText(context, "请开启悬浮窗权限", Toast.LENGTH_SHORT).show()
@@ -71,6 +77,8 @@ object FloatUtils {
                 Log.e("checkWindowPermission", "未授权悬浮窗,errMsg:${e.stackTraceToString()}")
             }
         }
+
+
     }
 
 
