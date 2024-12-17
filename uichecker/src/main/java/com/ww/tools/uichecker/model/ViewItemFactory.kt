@@ -36,30 +36,30 @@ object ViewItemFactory {
         viewItem.paddingRight = view.paddingRight
         viewItem.paddingTop = view.paddingTop
         viewItem.paddingBottom = view.paddingBottom
-        var layoutParams = view.layoutParams
-        if (layoutParams !is MarginLayoutParams) {
-            layoutParams = null
+        val layoutParams = view.layoutParams
+        if (layoutParams is MarginLayoutParams) {
+            val marginLayoutParams = layoutParams as MarginLayoutParams
+            viewItem.leftMargin = marginLayoutParams.leftMargin
         }
-        val marginLayoutParams = layoutParams as MarginLayoutParams
-        viewItem.leftMargin = marginLayoutParams.leftMargin
-        var layoutParams2 = view.layoutParams
-        if (layoutParams2 !is MarginLayoutParams) {
-            layoutParams2 = null
+
+        val layoutParams2 = view.layoutParams
+        if (layoutParams2 is MarginLayoutParams) {
+            val marginLayoutParams2 = layoutParams2 as MarginLayoutParams
+            viewItem.rightMargin = marginLayoutParams2.rightMargin
         }
-        val marginLayoutParams2 = layoutParams2 as MarginLayoutParams
-        viewItem.rightMargin = marginLayoutParams2.rightMargin
-        var layoutParams3 = view.layoutParams
-        if (layoutParams3 !is MarginLayoutParams) {
-            layoutParams3 = null
+
+        val layoutParams3 = view.layoutParams
+        if (layoutParams3 is MarginLayoutParams) {
+            val marginLayoutParams3 = layoutParams3 as MarginLayoutParams
+            viewItem.topMargin = marginLayoutParams3.topMargin
         }
-        val marginLayoutParams3 = layoutParams3 as MarginLayoutParams
-        viewItem.topMargin = marginLayoutParams3.topMargin
-        var layoutParams4 = view.layoutParams
-        if (layoutParams4 !is MarginLayoutParams) {
-            layoutParams4 = null
+
+        val layoutParams4 = view.layoutParams
+        if (layoutParams4 is MarginLayoutParams) {
+            val marginLayoutParams4 = layoutParams4 as MarginLayoutParams
+            viewItem.bottomMargin = marginLayoutParams4.bottomMargin
         }
-        val marginLayoutParams4 = layoutParams4 as MarginLayoutParams
-        viewItem.bottomMargin = marginLayoutParams4.bottomMargin
+
         val background = view.background
         if (background != null && (background is ColorDrawable)) {
             viewItem.backgroundColor = background.color
