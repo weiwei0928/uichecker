@@ -45,7 +45,7 @@ android {
 
 dependencies {
 //    debugImplementation ("com.ww.tools:uichecker:1.0.1")
-//    implementation ("com.github.weiwei0928:uichecker:1.0.1")
+//    debugImplementation ("com.github.weiwei0928:uichecker:1.0.2")
     implementation ("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.6.1")

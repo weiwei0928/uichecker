@@ -20,7 +20,7 @@ Step 2. Add the dependency
 
 ```kotlin
 dependencies {
-    debugImplementation 'com.github.weiwei0928:uichecker:1.0.1'
+    debugImplementation 'com.github.weiwei0928:uichecker:1.0.2'
 }
 ```
 

@@ -5,6 +5,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.ww.tools.uichecker.utils.FloatUtils
+import com.ww.tools.uichecker.utils.SpUtil.isShowLayoutBorder
+import com.ww.tools.uichecker.widget.BorderViewFrameLayout
 
 object FloatViewHelper {
 
@@ -12,13 +14,16 @@ object FloatViewHelper {
     private lateinit var windowManagerHelper: WindowManagerHelper
     private var lifecycleObserver: LifecycleEventObserver? = null
 
-    fun init(context: Activity) {
+    fun init(activity: Activity) {
         if (floatView != null) {
             uninstall()
         }
-        FloatUtils.checkWindowPermission(context) {
-            windowManagerHelper = WindowManagerHelper(context)
-            floatView = FloatView(context, windowManagerHelper)
+        if (isShowLayoutBorder()) {
+            BorderViewFrameLayout.install(activity)
+        }
+        FloatUtils.checkWindowPermission(activity) {
+            windowManagerHelper = WindowManagerHelper(activity)
+            floatView = FloatView(activity, windowManagerHelper)
             windowManagerHelper.addView(floatView!!.getView())
 
             // 添加生命周期观察者

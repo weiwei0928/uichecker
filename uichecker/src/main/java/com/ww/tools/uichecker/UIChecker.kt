@@ -19,10 +19,12 @@ object UIChecker {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 //                LauncherView.install(activity)
                 Log.d(TAG, "onActivityCreated: $activity")
-                FloatViewHelper.init(activity)
+
             }
 
-            override fun onActivityStarted(activity: Activity) = Unit
+            override fun onActivityStarted(activity: Activity) {
+                FloatViewHelper.init(activity)
+            }
 
             override fun onActivityResumed(activity: Activity) = Unit
 
