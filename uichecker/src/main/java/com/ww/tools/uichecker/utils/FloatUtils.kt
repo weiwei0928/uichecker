@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 object FloatUtils {
     const val REQUEST_FLOAT_CODE = 1001
@@ -61,24 +62,34 @@ object FloatUtils {
             Log.e("checkWindowPermission", "已授权悬浮窗")
             block()
         } else {
-
-//             val startForResult = context.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//                if (result.resultCode == Activity.RESULT_OK) {
-//                    val data: Intent? = result.data
-//                }
-//            }
-            try {
-                Log.e("checkWindowPermission", "未授权悬浮窗,去往设置页")
-                Toast.makeText(context, "请开启悬浮窗权限", Toast.LENGTH_SHORT).show()
-                context.startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
-                    data = Uri.parse("package:${context.packageName}")
-                }, REQUEST_FLOAT_CODE)
-            } catch (e: Exception) {
-                Log.e("checkWindowPermission", "未授权悬浮窗,errMsg:${e.stackTraceToString()}")
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
+                data = Uri.parse("package:${context.packageName}")
             }
+            if (context is AppCompatActivity) {
+                MyActivityResultCallback.register(context) { resultCode, intent ->
+                    Log.d("checkWindowPermission", "checkWindowPermission: $resultCode")
+                    if (resultCode == Activity.RESULT_OK && intent != null) {
+                        Toast.makeText(context, "已授权悬浮窗", Toast.LENGTH_SHORT).show()
+                        block()
+                    } else {
+                        Toast.makeText(context, "未授权悬浮窗", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                MyActivityResultCallback.startActivityForResult(intent)
+            } else {
+                try {
+                    Log.e("checkWindowPermission", "未授权悬浮窗,去往设置页")
+                    Toast.makeText(context, "请开启悬浮窗权限", Toast.LENGTH_SHORT).show()
+                    context.startActivityForResult(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
+                        data = Uri.parse("package:${context.packageName}")
+                    }, REQUEST_FLOAT_CODE)
+                } catch (e: Exception) {
+                    Log.e("checkWindowPermission", "未授权悬浮窗,errMsg:${e.stackTraceToString()}")
+                }
+            }
+
         }
-
-
     }
 
 

@@ -36,10 +36,10 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField ("boolean", "DEBUG_MODE", "true")
+            buildConfigField("boolean", "DEBUG_MODE", "true")
         }
         release {
-            buildConfigField ("boolean", "DEBUG_MODE", "false")
+            buildConfigField("boolean", "DEBUG_MODE", "false")
         }
     }
 }
@@ -49,25 +49,28 @@ publishing {
         register<MavenPublication>("mavenRelease") {
             groupId = "com.ww.tools"
             artifactId = "uichecker"
-            version = "1.0.0"
+            version = "1.0.1"
             afterEvaluate {
-                from(components["release"])
+                from(components["debug"])
             }
         }
     }
     repositories {
-        maven {
-            url = uri("../repo")
-        }
+//        maven(url = "https://jitpack.io")
+//        maven {
+//            url = uri("../repo")
+//        }
+        mavenLocal()
     }
 }
 
 dependencies {
 
-    implementation ("androidx.core:core-ktx:1.10.1")
-    implementation ("androidx.appcompat:appcompat:1.4.2")
-    implementation ("com.google.android.material:material:1.6.1")
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("com.google.android.material:material:1.6.1")
     implementation(libs.androidx.lifecycle.process)
+//    implementation(libs.androidx.lifecycle.process)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

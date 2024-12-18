@@ -15,11 +15,12 @@
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "debugVariantDebugApiPublication",
       "attributes": {
         "org.gradle.category": "library",
-        "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
       },
       "dependencies": [
         {
@@ -34,48 +35,49 @@
         {
           "name": "uichecker-1.0.0.aar",
           "url": "uichecker-1.0.0.aar",
-          "size": 89337,
-          "sha512": "227672abf5461a9b3820ab453d6ccf99e1e861c2b8ed7cd55b5ebc137562d7d1a6c3caafa28614f0c3c2550e25a599e904ca595a9717f24b80d5b6667233bb86",
-          "sha256": "bde2d38333c42165aab43a71dac69cfe7f7a1376a3df79ca83a655802d8c2e31",
-          "sha1": "4d6b2600c7df4d5100959c5a23e335296a044ad9",
-          "md5": "c56d6b479a424d173567f9776f6add2f"
+          "size": 96933,
+          "sha512": "7d30ddee5f8bdb94455c3e1f702f327672df1844477bb30d9b904f992b00403ab0c574e56c9e81d3eb3958a891cc94c4ddae18ab218ea49bf7bfcb1d8f89fda2",
+          "sha256": "f8eda93bb1363499a7311cc7cad60b07ba271123134fae12ec35d72f7a46be7f",
+          "sha1": "e4575c4df41426fc0a0677efc44e067367d22765",
+          "md5": "a15e12e0f45eda63844806287d27b0a8"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "debugVariantDebugRuntimePublication",
       "attributes": {
         "org.gradle.category": "library",
-        "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
       },
       "dependencies": [
         {
           "group": "androidx.core",
           "module": "core-ktx",
           "version": {
-            "requires": "1.13.0"
+            "requires": "1.10.1"
           }
         },
         {
           "group": "androidx.appcompat",
           "module": "appcompat",
           "version": {
-            "requires": "1.7.0"
+            "requires": "1.4.2"
           }
         },
         {
           "group": "com.google.android.material",
           "module": "material",
           "version": {
-            "requires": "1.11.0"
+            "requires": "1.6.1"
           }
         },
         {
           "group": "androidx.lifecycle",
           "module": "lifecycle-process",
           "version": {
-            "requires": "2.8.7"
+            "requires": "2.2.0"
           }
         },
         {
@@ -90,33 +92,11 @@
         {
           "name": "uichecker-1.0.0.aar",
           "url": "uichecker-1.0.0.aar",
-          "size": 89337,
-          "sha512": "227672abf5461a9b3820ab453d6ccf99e1e861c2b8ed7cd55b5ebc137562d7d1a6c3caafa28614f0c3c2550e25a599e904ca595a9717f24b80d5b6667233bb86",
-          "sha256": "bde2d38333c42165aab43a71dac69cfe7f7a1376a3df79ca83a655802d8c2e31",
-          "sha1": "4d6b2600c7df4d5100959c5a23e335296a044ad9",
-          "md5": "c56d6b479a424d173567f9776f6add2f"
-        }
-      ]
-    },
-    {
-      "name": "releaseSourcesElements-published",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.libraryelements": "jar",
-        "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
-      },
-      "files": [
-        {
-          "name": "uichecker-1.0.0-sources.jar",
-          "url": "uichecker-1.0.0-sources.jar",
-          "size": 50965,
-          "sha512": "bf60e8d98f30d3e55b9fe68328ab9794d5a2bf6bf923a31cdaa1a830a0a5968d35da78b4424a98cb75e69d7fc96751872d6a1c357602537d414d8257947a2fb3",
-          "sha256": "8ecae13e00c20a818eda50b15977c169ebb9cfc364f030d628d5d99d886f526d",
-          "sha1": "1be58d80fdd43ef06e228c5d5a83509a259f2d75",
-          "md5": "3731d8cf496a2f688e10a1606348b8cc"
+          "size": 96933,
+          "sha512": "7d30ddee5f8bdb94455c3e1f702f327672df1844477bb30d9b904f992b00403ab0c574e56c9e81d3eb3958a891cc94c4ddae18ab218ea49bf7bfcb1d8f89fda2",
+          "sha256": "f8eda93bb1363499a7311cc7cad60b07ba271123134fae12ec35d72f7a46be7f",
+          "sha1": "e4575c4df41426fc0a0677efc44e067367d22765",
+          "md5": "a15e12e0f45eda63844806287d27b0a8"
         }
       ]
     }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -55,8 +56,12 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
             initScaleY = scaleView?.scaleY ?: return false
             val prevFocusX = scaleView?.pivotX ?: return false
             val prevFocusY = scaleView?.pivotY ?: return false
-            val currFocusX = (prevFocusX * initScaleX + (detector.focusX - prevFocusX)) - (scaleView?.translationX ?: 0f)
-            val currFocusY = (prevFocusY * initScaleY + (detector.focusY - prevFocusY)) - (scaleView?.translationY ?: 0f)
+            val currFocusX =
+                (prevFocusX * initScaleX + (detector.focusX - prevFocusX)) - (scaleView?.translationX
+                    ?: 0f)
+            val currFocusY =
+                (prevFocusY * initScaleY + (detector.focusY - prevFocusY)) - (scaleView?.translationY
+                    ?: 0f)
             initFocusX = currFocusX / initScaleX
             initFocusY = currFocusY / initScaleY
             scaleView?.apply {
@@ -159,7 +164,12 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
     private fun replaceChildForeground(view: View, newDrawable: Drawable) {
         val layerDrawable: LayerDrawable
         val layerDrawable2: LayerDrawable
-        val oldDrawable = view.foreground
+        val oldDrawable : Drawable? = try {
+            view.foreground
+        } catch (e: Exception) {
+            Log.e(TAG, "replaceChildForeground: ")
+            null
+        }
         if (oldDrawable != null) {
             when (oldDrawable) {
                 is RippleDrawable -> {
@@ -185,7 +195,11 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
         } else {
             layerDrawable = LayerDrawable(arrayOf(newDrawable))
         }
-        view.foreground = layerDrawable
+        try {
+            view.foreground = layerDrawable
+        } catch (e: Exception) {
+            Log.e(TAG, "replaceChildForeground: $e", )
+        }
     }
 
     private fun clearChildrenForeground(view: View) {
@@ -202,7 +216,12 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
     }
 
     private fun clearChildForeground(view: View) {
-        val foreground = view.foreground
+        val foreground : Drawable? = try {
+            view.foreground
+        } catch (e: Exception) {
+            Log.e(TAG, "clearChildForeground: $e", )
+            null
+        }
         if (foreground == null || foreground !is LayerDrawable) {
             return
         }
@@ -216,7 +235,11 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
         }
 
         val array = drawables.toTypedArray()
-        view.foreground = LayerDrawable(array)
+        try {
+            view.foreground = LayerDrawable(array)
+        } catch (e: Exception) {
+            Log.e(TAG, "clearChildForeground: $e", )
+        }
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -238,14 +261,10 @@ class BorderViewFrameLayout(var activity: Activity) : FrameLayout(activity) {
                     ) < 10) && (abs((y - this.initTouchY).toDouble()) < 10)
                 ) {
                     this.enablePreviewMode = false
-                    val viewGroup = this.scaleView
-                    viewGroup!!.scaleX = 1.0f
-                    val viewGroup2 = this.scaleView
-                    viewGroup2!!.scaleY = 1.0f
-                    val viewGroup3 = this.scaleView
-                    viewGroup3!!.translationX = 0.0f
-                    val viewGroup4 = this.scaleView
-                    viewGroup4!!.translationY = 0.0f
+                    scaleView?.scaleX = 1.0f
+                    scaleView?.scaleY = 1.0f
+                    scaleView?.translationX = 0.0f
+                    scaleView?.translationY = 0.0f
                     return true
                 }
             }
