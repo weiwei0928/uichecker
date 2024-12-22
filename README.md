@@ -20,13 +20,12 @@ Step 2. Add the dependency
 
 ```kotlin
 dependencies {
-    debugImplementation 'com.github.weiwei0928:uichecker:1.0.2'
+    debugImplementation 'com.github.weiwei0928:uichecker:1.0.3'
 }
 ```
 
 注意 依赖这个库 打开app会去请求悬浮窗权限，以显示悬浮窗控制是否显示边界等信息
 
-示意图如下：
-
+使用演示
 ![img.png](img.png)
-![img_1.png](img_1.png)
+![uichecker.gif](uichecker.gif)

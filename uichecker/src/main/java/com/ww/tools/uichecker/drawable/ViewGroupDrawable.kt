@@ -19,13 +19,12 @@ class ViewGroupDrawable(private val rootView: ViewGroup) : Drawable() {
     private val drawers: ArrayList<ViewGroupDrawer> = ArrayList<ViewGroupDrawer>()
 
     init {
-        val arrayList: ArrayList<ViewGroupDrawer> = this.drawers
-        val context = this.rootView.context
-        arrayList.add(OutLineDrawer(context))
-        val arrayList2: ArrayList<ViewGroupDrawer> = this.drawers
-        arrayList2.add(RelativePositionDrawer(context))
-        val arrayList3: ArrayList<ViewGroupDrawer> = this.drawers
-        arrayList3.add(InfoDrawer(context))
+        val context = rootView.context
+        drawers.apply {
+            add(OutLineDrawer(context))
+            add(RelativePositionDrawer(context))
+            add(InfoDrawer(context))
+        }
     }
 
     override fun draw(canvas: Canvas) {

@@ -34,7 +34,7 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
                 } catch (e: Exception) {
                     ""
                 }
-                val info = "$size id:$id"
+                val info = "$size \nid33:$id"
                 drawViewInfo(info, Direction.LEFT_TOP, canvas, viewItem.location, viewItem)
                 val backgroundColor = viewItem.backgroundColor
                 if (backgroundColor != null) {
@@ -61,7 +61,7 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
         val y1 = location.top
         val x2 = location.right
         val y2 = location.bottom
-        mPaint.textSize = 12.0f
+        mPaint.textSize = 5.0f
         mPaint.style = Paint.Style.FILL
         mPaint.color = Color.RED
         val fontMetrics = mPaint.fontMetrics
@@ -71,14 +71,26 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
             Direction.LEFT_TOP -> {
                 if (!viewItem!!.hasChildView) {
                     mPaint.textAlign = Paint.Align.LEFT
+                    val lines = info.split("\n").toTypedArray()
+                    val lineHeight = mPaint.descent() - mPaint.ascent()
                     canvas.drawText(
-                        info,
+                        lines[0],
                         0,
-                        info.length,
+                        lines[0].length,
                         (x1 + 1).toFloat(),
                         (y1 - fontMetrics.top) + 1,
                         mPaint
                     )
+                    if (lines.size > 1) {
+                        canvas.drawText(
+                            lines[1],
+                            0,
+                            lines[1].length,
+                            (x1 + 1).toFloat(),
+                            (y1 - fontMetrics.top) + 1 + lineHeight,
+                            mPaint
+                        )
+                    }
                     return
                 }
                 return
@@ -153,4 +165,6 @@ class InfoDrawer(context: Context) : ViewGroupDrawer(context) {
             else -> return
         }
     }
+
+
 }

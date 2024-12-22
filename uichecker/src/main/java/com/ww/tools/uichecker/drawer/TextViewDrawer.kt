@@ -51,7 +51,7 @@ class TextViewDrawer(context: Context) : IDrawer(context) {
             ""
         }
         val textColor = toHexString(textColors.defaultColor)
-        val text = "text(" + textSize + "sp, " + textColor + id + ")"
+        val text = "text(" + textSize + "sp, " + textColor + ')'
         mPaint.textAlign = Paint.Align.RIGHT
         canvas.drawText(
             text,

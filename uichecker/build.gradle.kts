@@ -49,7 +49,7 @@ publishing {
         register<MavenPublication>("mavenRelease") {
             groupId = "com.ww.tools"
             artifactId = "uichecker"
-            version = "1.0.1"
+            version = "1.0.4"
             afterEvaluate {
                 from(components["debug"])
             }
@@ -65,7 +65,6 @@ publishing {
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.6.1")
