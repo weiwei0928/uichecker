@@ -27,5 +27,12 @@ dependencies {
 注意 依赖这个库 打开app会去请求悬浮窗权限，以显示悬浮窗控制是否显示边界等信息
 
 使用演示
-![img.png](img.png)
-![uichecker.gif](uichecker.gif)
+<br/>
+
+<div style="display: flex; flex-direction: row">
+<img src="img.png" width="25%">
+<img src="uichecker.gif" width="25%">
+</div>
+
+
+
